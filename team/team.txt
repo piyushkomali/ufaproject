@@ -1,0 +1,16 @@
+{
+    "teamID": "windchill",
+    "year": 2024,
+    "division": {
+        "divisionID": "central",
+        "name": "Central"
+    },
+    "city": "Minnesota",
+    "name": "Wind Chill",
+    "fullName": "Minnesota Wind Chill",
+    "abbrev": "MIN",
+    "wins": 12,
+    "losses": 3,
+    "ties": 0,
+    "standing": 1
+}
