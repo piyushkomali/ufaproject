@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} Stats</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}" />
+</head>
+<body>
+    <h1>{{ title }} Stats</h1>
+    <p>Welcome to the UFA Stats Application!</p>
+    <p>Player: {{ player }}</p>
+    <p>Year: {{ year }}</p>
+    <p>Assists: {{ assists }}</p>
+    <p>Goals: {{ goals }}</p>
+    <p>Hockey Assists: {{ hockeyAssists }}</p>
+    <p>Throwaways: {{ throwaways }}</p>
+    
+
+    <form action="/player/player">
+        <input type="text" name="player" id="player" placeholder="Enter player name">
+        <input type="text" name="year" id="year" placeholder="Enter year">
+        <button type="submit">Submit</button>
+    </form>
+
+    
+</body>
+</html>
