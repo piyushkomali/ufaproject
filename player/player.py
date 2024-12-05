@@ -60,14 +60,16 @@ def get_player_data(player="Jack Williams", year="2023"):
             teamResponse = requests.get(urlForTeam)
             teamResponse.raise_for_status()  # Raise HTTPError for bad responses (4xx, 5xx)
             teamJson = teamResponse.json()  # Parse JSON response
-
-            teamID = teamJson["data"][0]["teams"][0]["teamID"]
-            teamName = ufa_teams[teamID]
+            teamName = ""
+            if len(teamJson["data"]) != 0:
+                teamID = teamJson["data"][0]["teams"][0]["teamID"]
+                teamName = ufa_teams[teamID]
             
             response = requests.get(url, timeout=10)  # Set a timeout to avoid hanging requests
             response.raise_for_status()  # Raise HTTPError for bad responses (4xx, 5xx)
             json_obj = response.json()  # Parse JSON response
-            json_obj["data"][0]["player"]["team"] = teamName
+            if len(teamJson["data"]) != 0:
+                json_obj["data"][0]["player"]["team"] = teamName
             return json_obj
 
     except requests.RequestException as e:
