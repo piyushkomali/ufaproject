@@ -19,6 +19,11 @@ def player_get():
     if not player:
         player = " " """
 
+    try:
+        int(year)
+    except ValueError:
+        return render_template('player-not-found.html')
+
     if not bool(year.strip()):
         return render_template('player-not-found.html')
 
