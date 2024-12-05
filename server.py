@@ -20,7 +20,7 @@ def player_get():
         player = " " """
 
     if not bool(year.strip()):
-        year = " "
+        return render_template('player-not-found.html')
 
     if not bool(player.strip()):
         
@@ -34,6 +34,7 @@ def player_get():
     return render_template('player.html', 
                            title=player_data["data"][0]["player"]["firstName"] + " " + player_data["data"][0]["player"]["lastName"],
                            player=player_data["data"][0]["player"]["firstName"] + " " + player_data["data"][0]["player"]["lastName"], 
+                           team=player_data["data"][0]["player"]["team"],
                            year=player_data["data"][0]["year"], 
                            assists=player_data["data"][0]["assists"], 
                            goals=player_data["data"][0]["goals"], 
