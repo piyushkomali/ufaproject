@@ -3,7 +3,7 @@ body {
     margin: 0;
     font-family: 'Arial', sans-serif;
     color: #333;
-    background: linear-gradient(135deg, #74ebd5, #9face6);
+    background: #737399;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -65,6 +65,32 @@ button {
     width: 100%;
 }
 
+#go-back-button {
+    /* Add specific styles for the "Go Back" button */
+    position: absolute;
+    top: 90px; /* Distance from the top */
+    left: 75px; /* Distance from the left */
+    background-color: lightblue;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    width: 15%;
+}
+
+#home-button {
+
+    position: absolute;
+    top: 90px; /* Distance from the top */
+    right: 75px; /* Distance from the right */
+    background-color: rgb(150, 125, 241);
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    width: 15%;
+}
+
 button:hover {
     background-color: #574bcd;
     transform: translateY(-2px);
@@ -73,6 +99,24 @@ button:hover {
 button:active {
     background-color: #453aa6;
     transform: translateY(0);
+}
+
+#go-back-button:hover {
+    background-color: lightblue;
+    transform: scale(.98, .98);
+}
+#go-back-button:active {
+    background-color: lightblue;
+    transform: scale(1, 1);
+}
+
+#home-button:hover {
+    background-color: rgb(150, 125, 241);
+    transform: scale(.98, .98);
+}
+#home-button:active {
+    background-color: rgb(150, 125, 241);
+    transform: scale(1, 1);
 }
 
 /* Responsive design */
