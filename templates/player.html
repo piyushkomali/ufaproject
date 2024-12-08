@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }} Stats</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}" />
+    <link rel="icon"  type= "image/x-icon" href="{{ url_for('static', filename='assets/favicon.ico') }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
 </head>
 <body>
     <h1>{{ title }} Stats</h1>
@@ -17,11 +21,12 @@
     <p>Throwaways: {{ throwaways }}</p>
     
 
+    <!-- optional form to search for another player
     <form action="/player/player">
         <input type="text" name="player" id="player" placeholder="Enter player name">
         <input type="text" name="year" id="year" placeholder="Enter year">
         <button type="submit">Submit</button>
-    </form>
+    </form> -->
 
     <button id="go-back-button" onclick="history.back()">Go Back</button>
     <button id="home-button" onclick="window.location.href = '/';">Home</button>

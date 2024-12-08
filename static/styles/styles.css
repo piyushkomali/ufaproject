@@ -1,7 +1,8 @@
 /* Reset and general styles */
+
 body {
     margin: 0;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Plus Jakarta Sans', Arial, Helvetica, sans-serif;
     color: #333;
     background: #737399;
     display: flex;
@@ -12,12 +13,14 @@ body {
 }
 
 h1 {
+    font-family: 'Plus Jakarta Sans', Arial, Helvetica, sans-serif;
     font-size: 2.5rem;
     color: #222;
     margin-bottom: 10px;
 }
 
 p {
+    font-family: 'Crimson Text', serif;
     font-size: 1.2rem;
     color: #000000f3;
     margin-bottom: 10px;
@@ -67,6 +70,7 @@ button {
 
 #go-back-button {
     /* Add specific styles for the "Go Back" button */
+    font-family: 'Crimson Text', serif;
     position: absolute;
     top: 90px; /* Distance from the top */
     left: 75px; /* Distance from the left */
@@ -79,7 +83,7 @@ button {
 }
 
 #home-button {
-
+    font-family: 'Crimson Text', serif;
     position: absolute;
     top: 90px; /* Distance from the top */
     right: 75px; /* Distance from the right */
