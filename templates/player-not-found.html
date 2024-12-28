@@ -16,11 +16,50 @@
     <h1>Player not found, please enter a valid player name or year.</h1>
     <h2>Please try again</h2>
 
-    <form action="/player/player">
-        <input type="text" name="player" id="player" placeholder="Enter player name">
-        <input type="text" name="year" id="year" placeholder="Enter year">
-        <button type="submit">Submit</button>
+    <form id= "player-form" action="/player/player" onsubmit="return validateForm()">
+        <input type="text" name="year" id="year" placeholder="Enter year" oninput="enablePlayerForm()">
+        <button type="button" id="year-submit" onclick="submitYear()">Submit</button>
+
+        <input type="text" name="player" id="player" placeholder="Enter player name" disabled>
+        <button type="submit" id="submitButton" style="display: none;">Submit</button>
     </form>
+
+    <script>
+        function submitYear() {
+            const yearInput = document.getElementById("year").value.trim();
+
+            if(yearInput){
+                document.getElementById("player").disabled = false;
+                document.getElementById("submitButton").style.display = "inline-block";
+                document.getElementById("year-submit").style.display = "none";
+                //document.getElementById("year").disabled = true;
+            }
+            else{
+                alert("Please enter a year");
+            }
+        }
+        function enablePlayerForm() {
+            const yearInput = document.getElementById("year").value.trim();
+            const playerField = document.getElementById("player");
+            const yearButton = document.getElementById("year-submit");
+        
+            if (yearInput) {
+                yearButton.disabled = false;
+            } else {
+                yearButton.disabled = true;
+            }        
+        }
+        function validateForm() {
+            const playerInput = document.getElementById("player").value.trim();
+            const yearInput = document.getElementById("year").value.trim();
+
+            if (!yearInput || !playerInput) {
+                alert("Both fields are required.");
+                return false;
+            }
+            return true;
+        }
+    </script>
 
     <button id="go-back-button" onclick="history.back()">Go Back</button>
     <button id="home-button" onclick="window.location.href = '/';">Home</button>

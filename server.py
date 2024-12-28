@@ -9,6 +9,8 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+
+
 @app.route('/player/player', methods=['GET'])
 def player_get():
     player = request.args.get('player')

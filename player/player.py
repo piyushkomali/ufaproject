@@ -36,40 +36,40 @@ ufa_teams = {
 def get_player_data(player="Jack Williams", year="2023"):
     url = "https://www.backend.ufastats.com/api/v1/playerStats"
     
-
-    if not player or not player.strip():
-        raise ValueError("Player name must not be empty")
-    playerID = player.lower()
-    playerArray = playerID.split(" ")
+    playerArray = player.split(" ")
+    firstName = playerArray[0]
+    lastName = " ".join(playerArray[1:]) if len(playerArray) > 1 else playerArray[1:]
 
     
-    lastName  = "".join(playerArray[1:]).replace("-","")[0:8]
-    playerID = playerArray[0][0:1] + lastName
-    #year = input("\nenter year(OPTIONAL - press enter if not needed)\n[SEPARATE YEARS BY COMMAS IF MORE THAN ONE]: ")
+    playerID = playerArray[0][0:1] 
 
-    url = f"{url}?playerIDs={playerID}"
+    #url = f"{url}?playerIDs={playerID}"
 
-    if year and year.strip():
-        url = f"{url}&years={year}"
+    
 
-    urlForTeam = "https://www.backend.ufastats.com/api/v1/players"
-    urlForTeam = f"{urlForTeam}?years={year}&playerIDs={playerID}"
+    urlForPlayer = f"https://www.backend.ufastats.com/api/v1/players?years={year}"
 
     try:
             # Send GET request
-            teamResponse = requests.get(urlForTeam)
-            teamResponse.raise_for_status()  # Raise HTTPError for bad responses (4xx, 5xx)
-            teamJson = teamResponse.json()  # Parse JSON response
+            playerResponse = requests.get(urlForPlayer)  # Set a timeout to avoid hanging requests
+            playerJson = playerResponse.json()  # Parse JSON response
             teamName = ""
-            if len(teamJson["data"]) != 0:
-                teamID = teamJson["data"][0]["teams"][0]["teamID"]
-                teamName = ufa_teams[teamID]
-            
+            for p in playerJson["data"]:
+                if p["firstName"] == firstName and p["lastName"] == lastName:
+                    teamID = p["teams"][0]["teamID"]
+                    playerID = p["playerID"]
+                    try: 
+                        teamName = ufa_teams[teamID]
+                        break
+                    except KeyError:
+                        teamName = "Unknown"
+                        break
+                        
+            url = f"{url}?playerIDs={playerID}&years={year}"
+            print(url)
             response = requests.get(url, timeout=10)  # Set a timeout to avoid hanging requests
-            response.raise_for_status()  # Raise HTTPError for bad responses (4xx, 5xx)
             json_obj = response.json()  # Parse JSON response
-            if len(teamJson["data"]) != 0:
-                json_obj["data"][0]["player"]["team"] = teamName
+            json_obj["data"][0]["player"]["team"] = teamName
             return json_obj
 
     except requests.RequestException as e:
