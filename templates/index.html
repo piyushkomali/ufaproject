@@ -27,93 +27,12 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"
     />
-    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
   </head>
-  <body>
+  <body id="home">
     <h1>UFA Stats Application</h1>
     <p>Welcome to the UFA Stats Application!</p>
-    <form id="player-form" action="/player/player" onsubmit="return validateForm()">
-      <input type="text" name="year" id="year" placeholder="Enter year" oninput="enablePlayerForm()" />
-      <button type="button" id="year-submit" onclick="submitYear() ">Submit Year</button>
+    <button id="player-stats" onclick="window.location.href = '/player-input.html';">Get player stats</button>
+    <button id="team-stats" onclick="window.location.href = '/team-input.html';">Get team stats</button>
 
-      <select name="player" id="player" placeholder="Enter player name"style="display: none" disabled >
-        <option value="" disabled selected>Select or type a player</option>
-        <!-- Options should be populated dynamically -->
-      </select>
-
-      <button type="submit" id="submitButton" style="display: none">Submit</button>
-    </form>
-    <script>
-      
-      async function submitYear() {
-        const yearInput = document.getElementById("year").value.trim();
-        if (yearInput) {
-          if (yearInput < 2012 || yearInput > 2024) {
-            alert("Please enter a year between 2012 and 2024");
-            return;
-          }
-          try {
-            const response = await fetch(
-              `https://www.backend.ufastats.com/api/v1/players?years=${yearInput}`
-            );
-            const players = await response.json();
-
-            const select = document.getElementById("player");
-            select.innerHTML = ""; // Clear existing options
-
-            players.data.forEach((player) => {
-              const option = document.createElement("option");
-              const fullName = `${player.firstName} ${player.lastName}`;
-
-              option.value = fullName; // Adjust based on your API response
-              option.textContent = fullName;
-              console.log(option);
-              select.appendChild(option);
-            });
-            document.getElementById("player").disabled = false;
-            document.getElementById("player").style.display = "inline-block";
-            document.getElementById("submitButton").style.display =
-              "inline-block";
-            const choices = new Choices("#player", {
-              searchEnabled: true,
-              placeholderValue: "Select or type a player",
-              position: "auto",
-            });
-          } catch (error) {
-            console.error(
-              "Error fetching players and creating dropdown:",
-              error
-            );
-          }
-
-          //document.getElementById("year-submit").style.display = "none";
-          //document.getElementById("year").disabled = true;
-        } else {
-          alert("Please enter a year");
-        }
-      }
-      function enablePlayerForm() {
-        const yearInput = document.getElementById("year").value.trim();
-        const playerField = document.getElementById("player");
-        const yearButton = document.getElementById("year-submit");
-
-        if (yearInput) {
-          yearButton.disabled = false;
-          playerField.disabled = false;
-        } else {
-          yearButton.disabled = true;
-        }
-      }
-      function validateForm() {
-        const playerInput = document.getElementById("player").value.trim();
-        const yearInput = document.getElementById("year").value.trim();
-
-        if (!yearInput || !playerInput) {
-          alert("Both fields are required.");
-          return false;
-        }
-        return true;
-      }
-    </script>
   </body>
 </html>

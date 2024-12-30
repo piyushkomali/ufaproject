@@ -146,9 +146,23 @@ button {
     /* Add specific styles for the "Go Back" button */
     font-family: 'Crimson Text', serif;
     position: absolute;
+    
     top: 90px; /* Distance from the top */
     left: 75px; /* Distance from the left */
     background-color: lightblue;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    width: 15%;
+}
+#player-input #home-button {
+    font-family: 'Crimson Text', serif;
+    align-self: center;
+    top: -400px;
+    right: auto;
+    position: relative;
+    background-color: rgb(150, 125, 241);
     color: black;
     padding: 10px 20px;
     border: none;
@@ -169,6 +183,7 @@ button {
     width: 15%;
 }
 #year-button {
+    margin: 0;
     font-family: 'Crimson Text', serif;
     position: absolute;
     top: 90px; /* Distance from the top */
@@ -184,13 +199,71 @@ button {
     font-family: 'Crimson Text', serif;
     position: absolute;
     top: 90px; /* Distance from the top */
-    right: 590px; /* Distance from the right */
     background-color: rgb(171, 208, 24);
     color: black;
     padding: 10px 20px;
     border: none;
     cursor: pointer;
     width: 15%;
+
+}
+#another-team {
+    font-family: 'Crimson Text', serif;
+    position: absolute;
+    top: 90px; /* Distance from the top */
+    background-color: rgb(171, 208, 24);
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    width: 15%;
+
+}
+#player-stats {
+    font-family: 'Crimson Text', serif;
+    font-size: larger;
+    background-color: rgb(208, 24, 113);
+    color: black;
+    padding: 15px 25px;
+    border: none;
+    cursor: pointer;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+#player-stats:hover {
+    background-color: rgb(213, 29, 118);
+    transform: scale(.98, .98);
+}
+#player-stats:active {
+    background-color: rgb(213, 29, 118);
+    transform: scale(.98, .98);
+}
+#team-stats {
+    font-family: 'Crimson Text', serif;
+    position: relative;
+    top: 5px; /* Distance from the top */
+    font-size: larger;
+    background-color: rgb(17, 211, 201);
+    color: black;
+    padding: 15px 25px;
+    border: none;
+    cursor: pointer;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+#team-stats:hover {
+    background-color: rgb(17, 211, 201);
+    transform: scale(.98, .98);
+}
+#team-stats:active {
+    background-color: rgb(17, 211, 201);
+    transform: scale(.98, .98);
 }
 
 button:hover {
@@ -248,9 +321,23 @@ button:active {
 #another-player:hover {
     background-color: rgb(171, 208, 24);
     transform: scale(.98, .98);
+
+
 }
 #another-player:active {
     background-color: rgb(171, 208, 24);
+
+    transform: scale(1, 1);
+}
+#another-team:hover {
+    background-color: rgb(171, 208, 24);
+    transform: scale(.98, .98);
+
+
+}
+#another-team:active {
+    background-color: rgb(171, 208, 24);
+
     transform: scale(1, 1);
 }
 

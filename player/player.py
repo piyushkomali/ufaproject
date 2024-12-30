@@ -35,7 +35,7 @@ ufa_teams = {
 
 def get_player_data(player="Jack Williams", year="2023"):
     url = "https://www.backend.ufastats.com/api/v1/playerStats"
-    
+
     playerArray = player.split(" ")
     firstName = playerArray[0]
     lastName = " ".join(playerArray[1:]) if len(playerArray) > 1 else playerArray[1:]
@@ -43,11 +43,10 @@ def get_player_data(player="Jack Williams", year="2023"):
     
     playerID = playerArray[0][0:1] 
 
-    #url = f"{url}?playerIDs={playerID}"
-
     
 
     urlForPlayer = f"https://www.backend.ufastats.com/api/v1/players?years={year}"
+
 
     try:
             # Send GET request
@@ -66,16 +65,16 @@ def get_player_data(player="Jack Williams", year="2023"):
                         break
                         
             url = f"{url}?playerIDs={playerID}&years={year}"
-            print(url)
             response = requests.get(url, timeout=10)  # Set a timeout to avoid hanging requests
             json_obj = response.json()  # Parse JSON response
             json_obj["data"][0]["player"]["team"] = teamName
             return json_obj
-
+    
     except requests.RequestException as e:
         raise ConnectionError(f"Failed to fetch data from API: {e}")
     except json.JSONDecodeError:
         raise ValueError("Failed to parse JSON response from API")
+    
 
 
 if __name__ == "__main__":
