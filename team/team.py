@@ -1,11 +1,11 @@
 from pprint import pprint
 import requests
+from dotenv import load_dotenv
+import os
 import json
 
-with open('config.json', 'r') as file:
-    config = json.load(file)
-
-BASE_URL = config['BASE_URL']
+load_dotenv()
+BASE_URL = os.getenv("BASE_URL")
      
 def get_team_map(years):
     url = f"{BASE_URL}teams?years={years}"
