@@ -20,6 +20,7 @@
     <form id="team-form" action="/team" onsubmit="return validateFormTeam()">
       <input type="text" name="year" id="year" placeholder="Enter year" oninput="enableTeamForm()" />
       <button type="button" id="year-submit" onclick="submitYearTeam() ">Submit Year</button>
+      <button type="button" id="year-reset" onclick="window.location.href = '/team-input.html';">Reset</button>
 
       <select name="team" id="team" placeholder="Enter team name"style="display: none" disabled >
 

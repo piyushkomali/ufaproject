@@ -20,6 +20,7 @@
     <form id="player-form" action="/player" onsubmit="return validateFormPlayer()">
       <input type="text" name="year" id="year" placeholder="Enter year" oninput="enablePlayerForm()" />
       <button type="button" id="year-submit" onclick="submitYearPlayer() ">Submit Year</button>
+      <button type="button" id="year-reset" onclick="window.location.href = '/player-input.html';">Reset</button>
 
       <select name="player" id="player"  placeholder="Enter player name"style="display: none" disabled >
         <!-- Options should be populated dynamically -->

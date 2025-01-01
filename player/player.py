@@ -1,53 +1,19 @@
 from pprint import pprint
+from team.team import get_team_map
 import requests
 import json
 
-                #IMPORTANT INFO: playerID is max 9 characters, 1-firstname, 8-lastnameMAX
-ufa_teams = {
-    "hustle": "Atlanta Hustle",
-    "sol": "Austin Sol",
-    "glory": "Boston Glory",
-    "flyers": "Carolina Flyers",
-    "union": "Chicago Union",
-    "summit": "Colorado Summit",
-    "legion": "Dallas Legion",
-    "breeze": "DC Breeze",
-    "mechanix": "Detroit Mechanix",
-    "havoc": "Houston Havoc",
-    "alleycats": "Indianapolis AlleyCats",
-    "aviators": "Los Angeles Aviators",
-    "radicals": "Madison Radicals",
-    "windchill": "Minnesota Wind Chill",
-    "royal": "Montreal Royal",
-    "empire": "New York Empire",
-    "spiders": "Oakland Spiders",
-    "phoenix": "Philadelphia Phoenix",
-    "thunderbirds": "Pittsburgh Thunderbirds",
-    "steel": "Oregon Steel",
-    "shred": "Salt Lake Shred",
-    "growlers": "San Diego Growlers",
-    "cascades": "Seattle Cascades",
-    "rush": "Toronto Rush"
-}
-
-
-
-
 def get_player_data(player="Jack Williams", year="2023"):
+    ufa_teams = get_team_map(year)
+    
     url = "https://www.backend.ufastats.com/api/v1/playerStats"
 
     playerArray = player.split(" ")
     firstName = playerArray[0]
     lastName = " ".join(playerArray[1:]) if len(playerArray) > 1 else playerArray[1:]
-
-    
     playerID = playerArray[0][0:1] 
 
-    
-
     urlForPlayer = f"https://www.backend.ufastats.com/api/v1/players?years={year}"
-
-
     try:
             # Send GET request
             playerResponse = requests.get(urlForPlayer)  # Set a timeout to avoid hanging requests

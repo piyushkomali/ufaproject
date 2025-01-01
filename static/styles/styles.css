@@ -125,11 +125,32 @@ button {
     transition: background-color 0.3s ease, transform 0.2s ease;
     width: 100%;
 }
+#year-reset {
+    padding: 10px 20px;
+    position: relative;
+    margin-left: auto;
+    margin-bottom: -34px;
+    left: 10px;
+    color: #fff;
+    background-color: #6c63ff;
+    top: -42px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 17.5%;
+    display: flex
+;
+    align-items: baseline;
+    justify-content: center;
+}
 
 #year-submit {
     padding: 10px 20px;
     position: relative;
-    top: -7px; /* Move the button up by 2 pixels */
+    top: -7px;
+    left: -35px;
     height: 35px;
     font-size: 1rem;
     color: #fff;
@@ -138,7 +159,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    width: 100%;
+    width: 85%;
 }
 
 
@@ -282,6 +303,16 @@ button:active {
 }
 
 #year-submit:active {
+    background-color: #453aa6;
+    transform: translateY(0);
+}
+
+#year-reset:hover {
+    background-color: #574bcd;
+    transform: translateY(-2px);
+}
+
+#year-reset:active {
     background-color: #453aa6;
     transform: translateY(0);
 }

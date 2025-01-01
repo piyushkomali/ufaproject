@@ -1,20 +1,25 @@
 from pprint import pprint
 import requests
 import json
+
+with open('config.json', 'r') as file:
+    config = json.load(file)
+
+BASE_URL = config['BASE_URL']
      
-'''def get_team_list(yearsString):
-    url = f"{BASE_URL}teams?years={yearsString}"
-    listOfTeams = []
+def get_team_map(years):
+    url = f"{BASE_URL}teams?years={years}"
+    listOfTeams = {}
     response = requests.get(url)
     json_obj = response.json()
     for team in json_obj["data"]:
-        listOfTeams.append(team["teamID"])
-    return listOfTeams'''
+        listOfTeams[team["teamID"]] = team["fullName"]
+    return listOfTeams
 
                 #IMPORTANT INFO: playerID is max 9 characters, 1-firstname, 8-lastnameMAX
 
 def get_team_data(team="Raleigh Flyers", year="2023"):
-    url = "https://www.backend.ufastats.com/api/v1/teams"
+    url = f"{BASE_URL}teams"
     url = f'{url}?years={year}&teamIDs={team}'
     
     try:
