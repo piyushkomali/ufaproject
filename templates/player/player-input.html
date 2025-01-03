@@ -13,6 +13,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>
+      const sznOrGameDropdown = document.getElementById('sznOrGame');
+      if (sznOrGameDropdown) {
+        sznOrGameDropdown.addEventListener('change', () => {
+          console.log('hi');
+        });
+      }
+    </script>
   </head>
   <body id="player-input">
     <h1>UFA Stats Application</h1>
@@ -25,15 +33,24 @@
       <select name="player" id="player"  placeholder="Enter player name"style="display: none" disabled >
         <!-- Options should be populated dynamically -->
       </select>
-      <script>console.log(document.getElementById("player").value)</script>
+      
+              <!-- Allow user to select season or games -->
+      <select name="sznOrGame" id="sznOrGame" placeholder="Season or game stats?" style="display: none; margin-bottom: 10px;"  disabled onchange="gameOrSzn()" >
+        <option value="season" >Season</option>
+        <option value="game">Game</option>
+      </select>
+              
+          <!-- Different games to select from -->
+      <select name="games" id="games"  placeholder="Select or enter a game"style="display: none" disabled >
+        <!-- Options should be populated dynamically -->
+      </select>
+
       <button type="submit" id="submitButton" style="display: none">Submit</button>
+
     </form>
-    <script>console.log(document.getElementById("player").value)</script>
 
-
-    
     <button id="home-button" onclick="window.location.href = '/';">Home</button>
 
-    
+
   </body>
 </html>

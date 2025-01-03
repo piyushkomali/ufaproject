@@ -4,9 +4,10 @@ async function submitYearPlayer() {
     if (yearInput < 2012 || yearInput > 2024) {
       alert("Please enter a year between 2012 and 2024");
       return;
-    }
-    else if (yearInput == 2020){
-      alert("The 2020 season was compromised due to COVID-19. Please select a different year.");
+    } else if (yearInput == 2020) {
+      alert(
+        "The 2020 season was compromised due to COVID-19. Please select a different year."
+      );
       return;
     }
     try {
@@ -32,14 +33,16 @@ async function submitYearPlayer() {
         option.textContent = fullName;
         select.appendChild(option);
       });
-      
+
       if (window.playerChoices) {
         window.playerChoices.destroy();
       }
-      
+
       document.getElementById("player").disabled = false;
+      document.getElementById("sznOrGame").disabled = false;
       document.getElementById("year").readOnly = true;
       document.getElementById("player").style.display = "inline-block";
+      document.getElementById("sznOrGame").style.display = "inline-block";
       document.getElementById("submitButton").style.display = "inline-block";
       const choices = new Choices("#player", {
         searchEnabled: true,
@@ -52,7 +55,6 @@ async function submitYearPlayer() {
     } catch (error) {
       console.error("Error fetching players and creating dropdown:", error);
     }
- 
   } else {
     alert("Please enter a year");
   }
@@ -64,9 +66,10 @@ async function submitYearTeam() {
     if (yearInput < 2012 || yearInput > 2024) {
       alert("Please enter a year between 2012 and 2024");
       return;
-    }
-    else if (yearInput == 2020){
-      alert("The 2020 season was compromised due to COVID-19. Please select a different year.");
+    } else if (yearInput == 2020) {
+      alert(
+        "The 2020 season was compromised due to COVID-19. Please select a different year."
+      );
       return;
     }
     try {
@@ -117,10 +120,12 @@ function enablePlayerForm() {
   const yearInput = document.getElementById("year").value.trim();
   const playerField = document.getElementById("player");
   const yearButton = document.getElementById("year-submit");
+  const sznField = document.getElementById("sznOrGame");
 
   if (yearInput) {
     yearButton.disabled = false;
     playerField.disabled = false;
+    sznField.disabled = false;
   } else {
     yearButton.disabled = true;
   }
@@ -165,4 +170,31 @@ function validateFormTeam() {
     return false;
   }
   return true;
+}
+
+function gameOrSzn() {
+  const sznOrGame = document.getElementById("sznOrGame");
+  const gamesList = document.getElementById("games");
+
+  if (sznOrGame.value === "game") {
+    const def = document.createElement("option");
+    def.value = "";
+    def.color = "grey";
+    def.textContent = "Select or type a game";
+    gamesList.appendChild(def);
+    gamesList.disabled = false;
+    gamesList.style.display = "inline-block";
+    const games = new Choices("#games", {
+      searchEnabled: true,
+      placeholder: true,
+      placeholderValue: "Select or type a game",
+      shouldSort: false,
+      position: "auto",
+      removeItemButton: true,
+    });
+  } else {
+    console.log("hi");
+    gamesList.disabled = true;
+    gamesList.style.display = "none";
+  }
 }
