@@ -171,10 +171,11 @@ function validateFormTeam() {
   }
   return true;
 }
-
+let games;
 function gameOrSzn() {
   const sznOrGame = document.getElementById("sznOrGame");
   const gamesList = document.getElementById("games");
+  
 
   if (sznOrGame.value === "game") {
     const def = document.createElement("option");
@@ -184,7 +185,7 @@ function gameOrSzn() {
     gamesList.appendChild(def);
     gamesList.disabled = false;
     gamesList.style.display = "inline-block";
-    const games = new Choices("#games", {
+    games = new Choices("#games", {
       searchEnabled: true,
       placeholder: true,
       placeholderValue: "Select or type a game",
@@ -195,6 +196,14 @@ function gameOrSzn() {
   } else {
     console.log("hi");
     gamesList.disabled = true;
-    gamesList.style.display = "none";
+    
+      games.destroy();
+      games = null;
+      gamesList.style.display = "none"; 
+
+    // Remove all options
+    while (gamesList.firstChild) {
+      gamesList.removeChild(gamesList.firstChild);
+    }
   }
 }
