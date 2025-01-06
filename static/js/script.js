@@ -29,7 +29,7 @@ async function submitYearPlayer() {
         const option = document.createElement("option");
         const fullName = `${player.firstName} ${player.lastName}`;
 
-        option.value = fullName; // Adjust based on your API response
+        option.value = player.playerID; // Adjust based on your API response
         option.textContent = fullName;
         select.appendChild(option);
       });
@@ -172,12 +172,15 @@ function validateFormTeam() {
   return true;
 }
 let games;
-function gameOrSzn() {
+async function gameOrSzn() {
   const sznOrGame = document.getElementById("sznOrGame");
   const gamesList = document.getElementById("games");
   
+  if (sznOrGame.value === "game" ) {  
+    let playerID = document.getElementById("player").value.trim();
+    let year = document.getElementById("year").value.trim();
 
-  if (sznOrGame.value === "game") {
+    gamesList.innerHTML = ""; // Clear existing options
     const def = document.createElement("option");
     def.value = "";
     def.color = "grey";
@@ -193,6 +196,7 @@ function gameOrSzn() {
       position: "auto",
       removeItemButton: true,
     });
+    await populateGames(games, year, playerID);
   } else {
     console.log("hi");
     gamesList.disabled = true;
@@ -206,4 +210,34 @@ function gameOrSzn() {
       gamesList.removeChild(gamesList.firstChild);
     }
   }
+}
+
+async function populateGames(games, year, playerID){
+try {
+  const teamResponse = await fetch(
+    `https://www.backend.ufastats.com/api/v1/players?playerIDs=${playerID}&years=${year}`
+  );
+  const teamJson = await teamResponse.json();
+  team = teamJson.data[0].teams[0].teamID;
+  
+  const gamesResponse = await fetch(
+    `https://www.backend.ufastats.com/api/v1/games?date=${year}`
+  );
+  const gamesJson = await gamesResponse.json();
+  gamesJson.data.forEach((game) => {
+    if (game.awayTeamID === team || game.homeTeamID === team){
+      
+      games.setChoices([
+        {
+          value: game.gameID,
+          label: game.gameID,
+          selected: false,
+          disabled: false,
+        },
+      ], 'value', 'label', false);
+    }
+  });
+} catch (error) {
+  console.error("Error fetching teams and creating dropdown:", error);
+}
 }

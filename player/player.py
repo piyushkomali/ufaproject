@@ -8,21 +8,15 @@ def get_player_data(player="Jack Williams", year="2023"):
     
     url = "https://www.backend.ufastats.com/api/v1/playerStats"
 
-    playerArray = player.split(" ")
-    firstName = playerArray[0]
-    lastName = " ".join(playerArray[1:]) if len(playerArray) > 1 else playerArray[1:]
-    playerID = playerArray[0][0:1] 
-
     urlForPlayer = f"https://www.backend.ufastats.com/api/v1/players?years={year}"
     try:
             # Send GET request
-            playerResponse = requests.get(urlForPlayer)  # Set a timeout to avoid hanging requests
+            playerResponse = requests.get(urlForPlayer, timeout=10)  # Set a timeout to avoid hanging requests
             playerJson = playerResponse.json()  # Parse JSON response
             teamName = ""
             for p in playerJson["data"]:
-                if p["firstName"] == firstName and p["lastName"] == lastName:
+                if p["playerID"] == player:
                     teamID = p["teams"][0]["teamID"]
-                    playerID = p["playerID"]
                     try: 
                         teamName = ufa_teams[teamID]
                         break
@@ -30,7 +24,7 @@ def get_player_data(player="Jack Williams", year="2023"):
                         teamName = "Unknown"
                         break
                         
-            url = f"{url}?playerIDs={playerID}&years={year}"
+            url = f"{url}?playerIDs={player}&years={year}"
             response = requests.get(url, timeout=10)  # Set a timeout to avoid hanging requests
             json_obj = response.json()  # Parse JSON response
             json_obj["data"][0]["player"]["team"] = teamName
