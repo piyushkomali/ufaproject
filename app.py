@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from player.player import get_player_data
+from player.player import *
 from team.team import get_team_data
 from waitress import serve
 
@@ -39,17 +39,50 @@ def team_get():
 def player_get():
     player = request.args.get('player')
     year = request.args.get('year')
-    player_data = get_player_data(player, year)
+    sznOrGame = request.args.get('sznOrGame')
+    if sznOrGame == "season":
+        player_data = get_player_szn(player, year)
+        return render_template('player/playerSzn.html', 
+                            title=player_data["data"][0]["player"]["firstName"] + " " + player_data["data"][0]["player"]["lastName"],
+                            player=player_data["data"][0]["player"]["firstName"] + " " + player_data["data"][0]["player"]["lastName"], 
+                            team=player_data["data"][0]["player"]["team"],
+                            year=player_data["data"][0]["year"], 
+                            assists=player_data["data"][0]["assists"], 
+                            goals=player_data["data"][0]["goals"], 
+                            hockeyAssists=player_data["data"][0]["hockeyAssists"], 
+                            throwaways=player_data["data"][0]["throwaways"])
+    else:
 
-    return render_template('player/player.html', 
-                           title=player_data["data"][0]["player"]["firstName"] + " " + player_data["data"][0]["player"]["lastName"],
-                           player=player_data["data"][0]["player"]["firstName"] + " " + player_data["data"][0]["player"]["lastName"], 
-                           team=player_data["data"][0]["player"]["team"],
-                           year=player_data["data"][0]["year"], 
-                           assists=player_data["data"][0]["assists"], 
-                           goals=player_data["data"][0]["goals"], 
-                           hockeyAssists=player_data["data"][0]["hockeyAssists"], 
-                           throwaways=player_data["data"][0]["throwaways"])
+        game = request.args.get('games')
+        player_data = get_player_game(player,year, game)
+        return render_template('player/playerGame.html', 
+                            title=player_data["player"]["firstName"] + " " + player_data["player"]["lastName"],
+                            number=player_data["jerseyNumber"],
+                            team=player_data["team"],
+                            year=year,
+                            assists=player_data["assists"],
+                            goals=player_data["goals"],
+                            hockeyAssists=player_data["hockeyAssists"],
+                            completions=player_data["completions"],
+                            throwAttempts=player_data["throwAttempts"],
+                            throwaways=player_data["throwaways"],
+                            stalls=player_data["stalls"],
+                            callahansThrown=player_data["callahansThrown"],
+                            yardsReceived=player_data["yardsReceived"],
+                            yardsThrown=player_data["yardsThrown"],
+                            hucksAttempted=player_data["hucksAttempted"],
+                            hucksCompleted=player_data["hucksCompleted"],
+                            catches=player_data["catches"],
+                            drops=player_data["drops"],
+                            blocks=player_data["blocks"],
+                            callahans=player_data["callahans"],
+                            pulls=player_data["pulls"],
+                            obPulls=player_data["obPulls"],
+                            oPointsPlayed=player_data["oPointsPlayed"],
+                            oPointsScored=player_data["oPointsScored"],
+                            dPointsPlayed=player_data["dPointsPlayed"],
+                            dPointsScored=player_data["dPointsScored"]
+                            )
 
 if __name__ == '__main__':
     serve(app, host="0.0.0.0", port=8000)

@@ -3,7 +3,7 @@ from team.team import get_team_map
 import requests
 import json
 
-def get_player_data(player="Jack Williams", year="2023"):
+def get_player_szn(player="Jack Williams", year="2023"):
     ufa_teams = get_team_map(year)
     
     url = "https://www.backend.ufastats.com/api/v1/playerStats"
@@ -34,18 +34,36 @@ def get_player_data(player="Jack Williams", year="2023"):
         raise ConnectionError(f"Failed to fetch data from API: {e}")
     except json.JSONDecodeError:
         raise ValueError("Failed to parse JSON response from API")
+
+def get_player_game(playerID="blewis",year="2019", game="2019-08-11-DAL-NY"):
+    url = f"https://www.backend.ufastats.com/api/v1/playerGameStats?gameID={game}"
+    ufa_teams = get_team_map(year)
+    try:
+            # Send GET request
+            response = requests.get(url, timeout=10)  # Set a timeout to avoid hanging requests
+            playerJson = response.json()  # Parse JSON response
+            for p in playerJson["data"]:
+                if p["player"]["playerID"] == playerID:
+                   teamID = p["teamID"]
+                   p["team"] = ufa_teams[teamID]
+                   return p                    
+    except requests.RequestException as e:
+        raise ConnectionError(f"Failed to fetch data from API: {e}")
+    except json.JSONDecodeError:
+        raise ValueError("Failed to parse JSON response from API")
     
 
 
 if __name__ == "__main__":
     player = input("\nenter player name(make sure it is correct): ")
     year = input("\nenter year(REQUIRED)\n: ")
+    game = input("\nenter game id: ")
 
     if not bool(year.strip()):
         year = " "
     if not bool(player.strip()):
         player = "Jack Williams"
-    player_data = get_player_data(player, year)
+    player_data = get_player_szn(player, year)
 
     print("\n")
     pprint(player_data)

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }} Stats</title>
+    <title>{{ title }} Game Stats</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}" />
     <link rel="icon"  type= "image/x-icon" href="{{ url_for('static', filename='assets/favicon.ico') }}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -11,14 +11,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
 </head>
 <body>
-    <h1>{{ title }} Stats</h1>
-    <p>Player: {{ player }}</p>
+    <h1>{{ title }} Game Stats</h1>
+    <p>Player: {{ title }}</p>
+    <p>Number: {{ number }}</p>
     <p>Team: {{ team }}</p>
     <p>Year: {{ year }}</p>
     <p>Assists: {{ assists }}</p>
     <p>Goals: {{ goals }}</p>
     <p>Hockey Assists: {{ hockeyAssists }}</p>
+    <p>Completions: {{ completions }}</p>
+    <p>Throw Attempts: {{ throwAttempts }}</p>
     <p>Throwaways: {{ throwaways }}</p>
+    <p>Stalls: {{ stalls }}</p>
+    <p>Callahans Thrown: {{ callahansThrown }}</p>
+    <p>Yards Received: {{ yardsReceived }}</p>
+    <p>Yards Thrown: {{ yardsThrown }}</p>
+    <p>Hucks Attempted: {{ hucksAttempted }}</p>
+    <p>Hucks Completed: {{ hucksCompleted }}</p>
+    <p>Catches: {{ catches }}</p>
+    <p>Drops: {{ drops }}</p>
+    <p>Blocks: {{ blocks }}</p>
+    <p>Callahans: {{ callahans }}</p>
+    <p>Pulls: {{ pulls }}</p>
+    <p>Out of Bounds Pulls: {{ obPulls }}</p>
+    <p>Offensive Points Played: {{ oPointsPlayed }}</p>
+    <p>Offensive Points Scored: {{ oPointsScored }}</p>
+    <p>Defensive Points Played: {{ dPointsPlayed }}</p>
+    <p>Defensive Points Scored: {{ dPointsScored }}</p>
+
     
 
     <button id="go-back-button" onclick="history.back()">Go Back</button>
