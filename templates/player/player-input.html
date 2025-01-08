@@ -30,7 +30,7 @@
       <button type="button" id="year-submit" onclick="submitYearPlayer() ">Submit Year</button>
       <button type="button" id="year-reset" onclick="window.location.href = '/player-input.html';">Reset</button>
 
-      <select name="player" id="player"  placeholder="Enter player name"style="display: none" disabled >
+      <select name="player" id="player"  placeholder="Enter player name"style="display: none" onchange="onPlayerInput()" disabled >
         <!-- Options should be populated dynamically -->
       </select>
       
@@ -39,6 +39,9 @@
         <option value="season" >Season</option>
         <option value="game">Game</option>
       </select>
+      <script>
+        
+      </script>
               
       
           <!-- Different games to select from -->

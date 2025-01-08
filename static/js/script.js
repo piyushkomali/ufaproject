@@ -39,10 +39,8 @@ async function submitYearPlayer() {
       }
 
       document.getElementById("player").disabled = false;
-      document.getElementById("sznOrGame").disabled = false;
       document.getElementById("year").readOnly = true;
       document.getElementById("player").style.display = "inline-block";
-      document.getElementById("sznOrGame").style.display = "inline-block";
       document.getElementById("submitButton").style.display = "inline-block";
       const choices = new Choices("#player", {
         searchEnabled: true,
@@ -240,4 +238,10 @@ try {
 } catch (error) {
   console.error("Error fetching teams and creating dropdown:", error);
 }
+}
+
+function onPlayerInput(){
+  const sznOrGameDropdown = document.getElementById('sznOrGame');
+  sznOrGameDropdown.disabled = false;
+  sznOrGameDropdown.style.display = "inline-block";
 }
