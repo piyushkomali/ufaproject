@@ -17,23 +17,15 @@
   <body >
     <h1>UFA Stats Application</h1>
     <div class="container">
-      <h2>Login Page</h2>
+      <h2>Sign up Page</h2>
       
-      <!-- Login Form -->
-      <form id="loginForm" action="javascript:void(0)" style="all: unset;">
-          <input type="text" id="loginUsername" placeholder="Username" required><br>
-          <input type="text" id="loginPassword" placeholder="Password" required><br>
-          <button type="submit" onclick="login()">Login</button>
+      
+      <!-- Register Form -->
+      <form id="registerForm" action="javascript:void(0)"style="all: unset;">
+          <input type="text" id="registerUsername" placeholder="Username" required><br>
+          <input type="text" id="registerPassword" placeholder="Password" required><br>
+          <button type="submit" onclick="register()">Create Account</button>
       </form>
-      
-      <h3 class="hyperlink-text" onclick="window.location.href = '/signup';">Don't have an account?</h3>
-      <style>
-          .hyperlink-text {  
-            text-decoration: underline;
-            cursor: pointer;    /* Makes it look clickable */
-            align-items: center;
-      }</style>
-      
   </div>
 
 

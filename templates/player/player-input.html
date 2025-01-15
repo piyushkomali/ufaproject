@@ -13,14 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    <script>
-      const sznOrGameDropdown = document.getElementById('sznOrGame');
-      if (sznOrGameDropdown) {
-        sznOrGameDropdown.addEventListener('change', () => {
-          console.log('hi');
-        });
-      }
-    </script>
+
   </head>
   <body id="player-input">
     <h1>UFA Stats Application</h1>
@@ -53,7 +46,7 @@
 
     </form>
 
-    <button id="home-button" onclick="window.location.href = '/';">Home</button>
+    <button id="home-button" onclick="window.location.href = '/home';">Home</button>
 
 
   </body>

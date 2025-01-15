@@ -18,7 +18,7 @@ def get_team_map(years):
 
                 #IMPORTANT INFO: playerID is max 9 characters, 1-firstname, 8-lastnameMAX
 
-def get_team_data(team="Raleigh Flyers", year="2023"):
+def get_team_data(team="Carolina Flyers", year="2023"):
     url = f"{BASE_URL}teams"
     url = f'{url}?years={year}&teamIDs={team}'
     
@@ -39,7 +39,7 @@ if __name__ == "__main__":
     if not bool(year.strip()):
         year = " "
     if not bool(team.strip()):
-        team = "Raleigh Flyers"
+        team = "Carolina Flyers"
     team_data = get_team_data(team, year)
 
     print("\n")
