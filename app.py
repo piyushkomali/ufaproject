@@ -10,10 +10,11 @@ import sqlite3
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+DB_NAME = os.getenv('DB_NAME')
 jwt = JWTManager(app)
 
 def init_db():
-    conn = sqlite3.connect('users.db')
+    conn = sqlite3.connect(DB_NAME)
     c = conn.cursor()
     c.execute('''
         CREATE TABLE IF NOT EXISTS users (
